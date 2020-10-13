@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8"/>
+	<title>HiSERV Smart Controller</title>
+	<link rel="icon" type="image/x-icon" href="images/favicon_Hi.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="myscript.js"></script>
+	</script>
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+
+		body {
+		  font-family: Arial, Helvetica, sans-serif;
+		}
+		/* Float four columns side by side */
+		.column {
+		  float: left;
+		  padding: 0 10px;
+		}
+		.left, .right {
+		  width: 50%;
+		}
+		/* Remove extra left and right margins, due to padding */
+		.row {margin: 0 -5px;}
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Responsive columns */
+		@media screen and (max-width: 600px) {
+		  .column {
+			width: 100%;
+			display: block;
+			margin-bottom: 20px;
+		  }
+		}
+
+		/* Style the counter cards */
+		.card {
+		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+		  padding: 16px;
+		  text-align: center;
+		  background-color: #f1f1f1;
+		  margin: auto;
+		}
+		h2 {
+		  text-align: center;
+		}
+		
+		.switch {
+		  position: relative;
+		  display: inline-block;
+		  width: 60px;
+		  height: 34px;
+		}
+
+		.switch input { 
+		  opacity: 0;
+		  width: 0;
+		  height: 0;
+		}
+
+		.slider {
+		  position: absolute;
+		  cursor: pointer;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  background-color: #ccc;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+
+		.slider:before {
+		  position: absolute;
+		  content: "";
+		  height: 26px;
+		  width: 26px;
+		  left: 4px;
+		  bottom: 4px;
+		  background-color: white;
+		  -webkit-transition: .4s;
+		  transition: .4s;
+		}
+
+		input:checked + .slider {
+		  background-color: #2196F3;
+		}
+
+		input:focus + .slider {
+		  box-shadow: 0 0 1px #2196F3;
+		}
+
+		input:checked + .slider:before {
+		  -webkit-transform: translateX(26px);
+		  -ms-transform: translateX(26px);
+		  transform: translateX(26px);
+		}
+		.w3-btn {
+			margin-bottom:10px;
+		    font-size: 24px;
+		}
+				 
+	</style>
+</head>
+
+<body>
+ <div class="main">
+	<div class="row">
+	  <h2>Willkommen zum HiSERV Smart Controller</h2>
+	  <div class="column left">
+		<div class="card" id="commands" style="width:65%">
+			<table style="width:100%">
+			  <tr>
+				<td style="text-align:left"><h4>Verbindungstest: </h4></td>
+				<td>
+					<input  id="TestTaste" onclick="testConnexion()" type="image" src="images/radio_antenna.png" width="25%" height="25%"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:left"><h4 id="ZUN_TXT">Zündung: </h4></td>
+				<td>
+					<label class="switch">
+					  <input type="checkbox" id="ZUN" onclick="sendQuery('ZUN')">
+					  <span id="ZUN_SPAN" class="slider"></span>
+					</label>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:left"><h4 id="MOR_TXT" style="color: #C8C8C8">Motor: </h4></td>
+				<td>
+					<label class="switch">
+					  <input type="checkbox" id="MOR" onclick="sendQuery('MOR')" disabled="true">
+					  <span id="MOR_SPAN" class="slider"></span>
+					</label>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:left"><h4 id="BYP_TXT">ByPass: </h4></td>
+				<td>
+					<label class="switch">
+					  <input type="checkbox" id="BYP" onclick="sendQuery('BYP')">
+					  <span id="BYP_SPAN" class="slider"></span>
+					</label>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:left"><h4 id="LAB_TXT" style="color: #C8C8C8">Lastbetrieb: </h4></td>
+				<td>
+					<label class="switch">
+					  <input type="checkbox" id="LAB" onclick="sendQuery('LAB')" disabled="true">
+					  <span id="LAB_SPAN" class="slider"></span>
+					</label>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:left"><h4 id="SWF_TXT" style="color: #C8C8C8">Scheinwerfer: </h4></td>
+				<td>
+					<label class="switch">
+					  <input type="checkbox" id="SWF" onclick="sendQuery('SWF')" disabled="true">
+					  <span id="SWF_SPAN" class="slider"></span>
+					</label>
+				</td>
+			  </tr>
+			  <tr>
+				<td style="text-align:left"><h4 id="SIF_TXT" style="color: #C8C8C8">Alarm Licht: </h4></td>
+				<td>
+					<label class="switch">
+					  <input type="checkbox" id="SIF" onclick="sendQuery('SIF')" disabled="true">
+					  <span id="SIF_SPAN" class="slider"></span>
+					</label>
+				</td>
+			  </tr>
+			</table>		
+		</div>
+	  </div>
+	  <div class="column right">
+		<div class="card" id="commands" style="width:65%">
+			<img src="images/tastatur-pfeiltasten.jpg" style="margin: auto; width:60%; height:60%">
+			<h4> Halten Sie die Pfeiltasten der Tastatur gedrückt, um das Fahrzeug zu bewegen </h4>
+			<h4 style="color:red"> Not Stopp </h4> 
+			<i><img src="images/Arrow_down.png" style="margin: auto; width:10%; height:10%"/></i>
+			<h4>"Leertaste"</h4>
+		</div>
+	  </div>  
+	</div>	
+ </div>	
+</body>
+</html>
