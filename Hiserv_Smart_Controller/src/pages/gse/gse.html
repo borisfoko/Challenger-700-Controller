@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/icon/HiSERV.png" style="width :8% ; height : 3%" ng-click="#" >
+      Smart Controller
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="card-background-page">
+  <table class="ion-table-transparent table">
+    <tbody>
+      <tr>
+        <td>
+          <ion-card (click)="openMenu(1722881)">
+            <img src="assets/imgs/Dummy Champ 700.jpg"/>
+            <ion-card-content>
+              <ion-card-title>
+                Champ 700
+              </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </td>
+        <td>
+          <ion-card (click)="openMenu(502221)">
+            <ion-icon name="wifi" item-start></ion-icon>
+            <img  src="assets/imgs/Dummy Box.jpg"/>
+            <ion-card-content>
+                <ion-card-title>
+                    Dummy Box
+                </ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </td>
+      <tr>
+    </tbody>
+  </table>
+</ion-content>

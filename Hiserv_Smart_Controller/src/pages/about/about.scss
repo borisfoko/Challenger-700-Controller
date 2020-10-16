@@ -1,0 +1,8 @@
+page-about {
+    ion-card.cards-list-demo ion-card-header {
+        color: map-get($colors, primary);
+        font-size: 20px;
+        margin-right: 10%;
+      }
+}
+

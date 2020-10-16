@@ -1,0 +1,8 @@
+{
+  "name": "Hiserv_Smart_Controller",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "c3631510"
+}

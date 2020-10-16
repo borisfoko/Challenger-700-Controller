@@ -1,0 +1,9 @@
+<ion-menu [content]="content"> 
+  <ion-content padding>
+    <ion-list>
+      <button ion-item menuClose (click)="gotoGSEPage()"><ion-icon name="car"></ion-icon> Fuhrpark </button>
+      <button ion-item menuClose (click)="gotoAboutPage()"><ion-icon name="information-circle"></ion-icon>  Über uns! </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav #content [root]="rootPage"></ion-nav>
